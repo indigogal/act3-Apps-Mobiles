@@ -7,15 +7,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CardElevation
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import java.time.LocalDate
 import androidx.lifecycle.ViewModel
@@ -30,7 +27,7 @@ data class Reminder(
     val id: Int,
     val name: String,
     val content: String,
-    val dueBy: LocalDate
+    val dueBy: LocalDate,
 )
 data class ReminderVMState(
     var reminders: List<Reminder>? = null
@@ -64,7 +61,7 @@ class ReminderVM : ViewModel(){
 @Composable
 fun ReminderCard(data: Reminder, modifier: Modifier = Modifier){
     ElevatedCard(
-        modifier = modifier.size(width = 250.dp, height = 220.dp).padding(16.dp),
+        modifier = modifier.size(width = 300.dp, height = 220.dp).padding(16.dp),
         elevation = CardDefaults.elevatedCardElevation(16.dp),
         shape = CardDefaults.elevatedShape
     ) {
@@ -72,7 +69,7 @@ fun ReminderCard(data: Reminder, modifier: Modifier = Modifier){
             modifier = Modifier.fillMaxSize().padding(16.dp)
         ) {
          Text(
-             text = "${data.id}·${data.name}",
+             text = "·${data.name}",
              style = AppTypography.displaySmall,
          )
              Spacer(Modifier.height(16.dp))
@@ -97,7 +94,7 @@ fun ReminderCardPreview(){
         id = 0,
         name = "Test",
         content = "Lorem Ipsum",
-        dueBy = LocalDate.now()
+        dueBy = LocalDate.now(),
     )
     AppTheme() {
         ReminderCard(data)
