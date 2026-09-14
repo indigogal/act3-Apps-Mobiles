@@ -1,0 +1,6 @@
+- [ ] Update build configuration (libs.versions.toml, build.gradle.kts)
+- [ ] Implement Room Data Layer (Note, NoteDao, Converters, AppDatabase)
+- [ ] Implement NoteViewModel
+- [ ] Create UI Components (NoteCard, SwipeToDeleteContainer)
+- [ ] Update MainActivity with NotesScreen and Animations
+- [ ] Verify persistence, animations, and gestures
