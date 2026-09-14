@@ -71,11 +71,10 @@ fun TestinputForm(
                 val formFilled = title.isNotBlank() && description.isNotBlank()
                 if (formFilled && (parsedDate != null)) {
                     viewModel.addReminder(
-                        Reminder(
-                            id = System.currentTimeMillis().toInt(),
-                            name = title,
+                        Note(
+                            title = title,
                             content = description,
-                            dueBy = parsedDate
+                            date = parsedDate.atStartOfDay()
                         )
                     )
                     title = ""
