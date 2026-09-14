@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -60,7 +61,14 @@ fun ReminderScreen(
     onAddReminder: () -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    ReminderContent(uiState = uiState, onAddReminder = onAddReminder)
+}
 
+@Composable
+fun ReminderContent(
+    uiState: ReminderVMState,
+    onAddReminder: () -> Unit,
+) {
     Box(modifier = Modifier.fillMaxSize()) {
         if (uiState.reminders.orEmpty().isEmpty()) {
             Text(
@@ -87,5 +95,27 @@ fun ReminderScreen(
         ) {
             Text("Nuevo Recordatorio")
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ReminderScreenPreview() {
+    val dummyState = ReminderVMState(
+        reminders = listOf(
+            Reminder(1, "Comprar leche", "Ir al súper a por leche desnatada", java.time.LocalDate.now()),
+            Reminder(2, "Estudiar Kotlin", "Terminar el ejercicio de Compose", java.time.LocalDate.now().plusDays(1))
+        )
+    )
+    AppTheme {
+        ReminderContent(uiState = dummyState, onAddReminder = {})
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ReminderScreenEmptyPreview() {
+    AppTheme {
+        ReminderContent(uiState = ReminderVMState(reminders = emptyList()), onAddReminder = {})
     }
 }
