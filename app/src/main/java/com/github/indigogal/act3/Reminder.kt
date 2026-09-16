@@ -124,9 +124,7 @@ class ReminderVMFactory(private val noteDao: NoteDao) : ViewModelProvider.Factor
 @Composable
 fun ReminderCard(data: Note, modifier: Modifier = Modifier) {
     ElevatedCard(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 4.dp),
+        modifier = modifier.fillMaxWidth(),
         elevation = CardDefaults.elevatedCardElevation(8.dp),
         shape = CardDefaults.elevatedShape
     ) {
@@ -162,6 +160,6 @@ fun ReminderCardPreview() {
         date = LocalDateTime.now(),
     )
     AppTheme {
-        ReminderCard(data)
+        ReminderCard(data, modifier = Modifier.padding(16.dp))
     }
 }
